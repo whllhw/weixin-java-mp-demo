@@ -49,7 +49,7 @@ public class MsgHandler extends AbstractHandler {
 
         //TODO 组装回复消息
         this.logger.info("[RECV] user:{} content:{}", wxMessage.getFromUser(), wxMessage.getContent());
-        this.logger.info("收到信息内容：" + JsonUtils.toJson(wxMessage));
+        // this.logger.info("收到信息内容：" + JsonUtils.toJson(wxMessage));
 
         return new TextBuilder().build(content, wxMessage, weixinService);
 
