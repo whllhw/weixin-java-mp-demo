@@ -10,7 +10,7 @@ wx:
       host: 127.0.0.1
       port: 6379
     configs:
-      - appId: ${MP_APP0_ID}
-        secret: ${MP_APP0_SECRET}
-        token: ${MP_APP0_TOKEN}
-        aesKey: ${MP_APP0_AESKEY}
+      - appId: ${MP_APP0_ID:wxce89b6e17c38ba47}
+        secret: ${MP_APP0_SECRET:4d923cb522dcbbae3d7f2902101b18f1}
+        token: ${MP_APP0_TOKEN:4d923cb522dcbbae3d7f2902101b18f1}
+        aesKey: ${MP_APP0_AESKEY:gWVgegdMtoTgof6uXJZlyxNrZd5ukCpK6TVRNXNTUUo}

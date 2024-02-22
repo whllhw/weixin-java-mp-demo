@@ -11,6 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 
@@ -27,7 +30,8 @@ public class MsgHandler extends AbstractHandler {
         String content = "";
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             //TODO 可以选择将消息保存到本地
-            content = "已收到您的消息~您的msgId是" + wxMessage.getMsgId();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            content = String.format("已收到您于%s发送的消息~", dateFormat.format(new Date(wxMessage.getCreateTime() * 1000)));
         }
 
         //当用户输入关键词如“你好”，“客服”等，并且有客服在线时，把消息转发给在线客服
