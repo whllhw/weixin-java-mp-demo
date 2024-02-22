@@ -24,26 +24,27 @@ public class MsgHandler extends AbstractHandler {
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
                                     Map<String, Object> context, WxMpService weixinService,
                                     WxSessionManager sessionManager) {
-
+        String content = "";
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             //TODO 可以选择将消息保存到本地
+            content = "已收到您的消息~您的msgId是" + wxMessage.getMsgId();
         }
 
         //当用户输入关键词如“你好”，“客服”等，并且有客服在线时，把消息转发给在线客服
-        try {
-            if (StringUtils.startsWithAny(wxMessage.getContent(), "你好", "客服")
-                && weixinService.getKefuService().kfOnlineList()
-                .getKfOnlineList().size() > 0) {
-                return WxMpXmlOutMessage.TRANSFER_CUSTOMER_SERVICE()
-                    .fromUser(wxMessage.getToUser())
-                    .toUser(wxMessage.getFromUser()).build();
-            }
-        } catch (WxErrorException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     if (StringUtils.startsWithAny(wxMessage.getContent(), "你好", "客服")
+        //         && weixinService.getKefuService().kfOnlineList()
+        //         .getKfOnlineList().size() > 0) {
+        //         return WxMpXmlOutMessage.TRANSFER_CUSTOMER_SERVICE()
+        //             .fromUser(wxMessage.getToUser())
+        //             .toUser(wxMessage.getFromUser()).build();
+        //     }
+        // } catch (WxErrorException e) {
+        //     e.printStackTrace();
+        // }
 
         //TODO 组装回复消息
-        String content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
+        this.logger.info("收到信息内容：" + JsonUtils.toJson(wxMessage));
 
         return new TextBuilder().build(content, wxMessage, weixinService);
 
