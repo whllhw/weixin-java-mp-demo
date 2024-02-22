@@ -2,7 +2,7 @@
 /.settings/
 *.project
 *.classpath
-application.yml
+!application.yml
 /.idea/
 *.iml
 /ngrok/

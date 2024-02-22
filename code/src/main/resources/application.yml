@@ -1,0 +1,16 @@
+logging:
+  level:
+    org.springframework.web: INFO
+    com.github.binarywang.demo.wx.mp: DEBUG
+    me.chanjar.weixin: DEBUG
+wx:
+  mp:
+    useRedis: false
+    redisConfig:
+      host: 127.0.0.1
+      port: 6379
+    configs:
+      - appId: ${MP_APP0_ID}
+        secret: ${MP_APP0_SECRET}
+        token: ${MP_APP0_TOKEN}
+        aesKey: ${MP_APP0_AESKEY}
